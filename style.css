@@ -1,0 +1,361 @@
+/* =========================================
+   VARIABLES GLOBALES (:root)
+   Definimos paleta y tipografía. 
+    Lima tomado del fondo de la ilustración del hero.
+========================================= */
+:root {
+    --bg-color: #AAB12D;
+    --text-dark: #121212; /* Casi negro para contraste */
+    --text-light: #F4F4F0; /* Crema/Hueso */
+    --font-main: 'Space Grotesk', sans-serif;
+}
+
+/* Reset básico para limpiar márgenes del navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+}
+
+/* =========================================
+   HEADER & NAVBAR (Mobile First)
+========================================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+    padding: 1rem 1.5rem;
+    /* Efecto cristal sutil */
+    background: rgba(170, 177, 45, 0.9);
+    backdrop-filter: blur(8px);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text-dark);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+}
+
+/* Botón Hamburguesa */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 60; /* Por encima del menú desplegado */
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--text-dark);
+    transition: all 0.3s ease;
+}
+
+/* Enlaces del menú (Móvil - Oculto por defecto) */
+.nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    opacity: 0;
+    pointer-events: none; /* Evita clicks cuando está invisible */
+    transition: opacity 0.4s ease;
+}
+
+/* Clase que se agrega con JS para mostrar el menú */
+.nav-links.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.nav-links a {
+    font-size: 2rem;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+/* =========================================
+   HERO SECTION
+========================================= */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* En móvil empujamos el texto abajo */
+    padding: 2rem 1.5rem 4rem 1.5rem;
+    overflow: hidden;
+    touch-action: pan-y;
+}
+
+/* --- EL GATO 3D (Sprite Sheet) --- */
+.cat-avatar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(92vw, 420px);
+    aspect-ratio: 16 / 9;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.cat-avatar__frame {
+    position: absolute;
+    inset: 0;
+    background-image: url('./assets/hero2_refurbished.png');
+    background-size: 300% 300%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    will-change: opacity;
+}
+
+.cat-avatar__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cat-avatar.is-video-mirrored .cat-avatar__video {
+    transform: scaleX(-1);
+}
+
+.cat-avatar.has-video .cat-avatar__video {
+    opacity: 1;
+}
+
+.cat-avatar.has-video .cat-avatar__frame {
+    opacity: 0 !important;
+}
+
+/* --- TEXTOS DEL HERO --- */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+}
+
+.blurred-label {
+    font-size: 1.1rem;
+    filter: blur(2px); /* Efecto difuminado que pediste */
+    margin-bottom: 1rem;
+    color: rgba(18, 18, 18, 0.8);
+}
+
+.typewriter-container {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    min-height: 100px; /* Evita que el layout salte mientras escribe */
+}
+
+/* Animación del cursor parpadeante */
+.cursor {
+    animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* --- BOTONES PILL (Píldoras) --- */
+.pill-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    opacity: 0;
+    transform: translateY(15px);
+    /* Animación de entrada: aparece de abajo hacia arriba */
+    animation: fadeUp 0.6s ease forwards;
+    animation-delay: 0.5s; /* Espera medio segundo al cargar la página */
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.6rem 1.2rem;
+    border-radius: 9999px; /* Forma de píldora */
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Variantes de botones */
+.pill-btn.solid {
+    background-color: var(--text-dark);
+    color: var(--text-light);
+    border: 1px solid var(--text-dark);
+}
+
+.pill-btn.solid:hover {
+    background-color: transparent;
+    color: var(--text-dark);
+}
+
+.pill-btn.outline {
+    background-color: transparent;
+    color: var(--text-dark);
+    border: 1px solid var(--text-dark);
+}
+
+.pill-btn.outline:hover {
+    background-color: var(--text-dark);
+    color: var(--text-light);
+}
+
+@media (max-width: 480px) {
+    .hero {
+        justify-content: flex-end;
+        padding: 1rem 1rem 1.25rem;
+    }
+
+    .cat-avatar {
+        top: 50%;
+        width: min(92vw, 420px);
+        left: 50%;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .blurred-label {
+        font-size: 0.85rem;
+        filter: blur(1px);
+        margin-bottom: 0.55rem;
+    }
+
+    .typewriter-container {
+        font-size: 1.55rem;
+        line-height: 1.08;
+        min-height: 0;
+        margin-bottom: 0.85rem;
+    }
+
+    .pill-container {
+        gap: 0.45rem;
+    }
+
+    .pill-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 360px) and (max-height: 700px) {
+    .cat-avatar {
+        top: 37%;
+        width: 92vw;
+    }
+
+    .typewriter-container {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 360px) and (max-height: 560px) {
+    .cat-avatar {
+        top: 34%;
+        width: 92vw;
+    }
+
+    .typewriter-container {
+        font-size: 1.3rem;
+    }
+}
+
+/* =========================================
+   MEDIA QUERIES (Desktop)
+   A partir de 768px adaptamos el diseño
+========================================= */
+@media (min-width: 768px) {
+    /* Ocultamos hamburguesa y mostramos links normales */
+    .hamburger { display: none; }
+    
+    .nav-links {
+        position: static;
+        height: auto;
+        flex-direction: row;
+        background: transparent;
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .nav-links a {
+        font-size: 1.1rem;
+    }
+
+    .hero {
+        justify-content: center; /* Centramos contenido en desktop */
+        padding-left: 4rem;
+    }
+
+    .typewriter-container {
+        font-size: 3.5rem;
+    }
+
+    /* Hacemos el gato más grande en PC */
+    .cat-avatar {
+        width: min(52vw, 740px);
+        aspect-ratio: 16 / 9;
+        left: 75%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+    .hero-content {
+        max-width: 50vw;
+    }
+
+    .cat-avatar {
+        width: min(42vw, 460px);
+        left: 88%;
+    }
+}
