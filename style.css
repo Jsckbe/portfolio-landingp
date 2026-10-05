@@ -119,7 +119,7 @@ body {
     touch-action: pan-y;
 }
 
-/* --- EL GATO 3D (Sprite Sheet) --- */
+/* --- Avatar del hero --- */
 .cat-avatar {
     position: absolute;
     top: 50%;
@@ -151,17 +151,29 @@ body {
     object-position: center;
     opacity: 0;
     pointer-events: none;
+    transition: opacity 350ms ease-in-out;
 }
 
 .cat-avatar.is-video-mirrored .cat-avatar__video {
     transform: scaleX(-1);
 }
 
-.cat-avatar.has-video .cat-avatar__video {
+.cat-avatar.is-desktop.has-video .cat-avatar__video,
+.cat-avatar.is-mobile-playing .cat-avatar__video,
+.cat-avatar.is-mobile-paused .cat-avatar__video {
     opacity: 1;
 }
 
-.cat-avatar.has-video .cat-avatar__frame {
+.cat-avatar.is-mobile-transitioning-out .cat-avatar__video {
+    opacity: 0;
+}
+
+.cat-avatar.is-desktop.has-video .cat-avatar__frame,
+.cat-avatar.is-mobile-playing .cat-avatar__frame {
+    opacity: 0 !important;
+}
+
+.cat-avatar.is-mobile .cat-avatar__frame {
     opacity: 0 !important;
 }
 

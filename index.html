@@ -2,11 +2,11 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <!-- Meta viewport para asegurar que sea Mobile First (100% responsive) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Servicios de tecnología y desarrollo web pragmáticos para tu negocio.">
     <title>pragz.io | Servicios TI pragmáticos</title>
     
-    <!-- Importamos la tipografía Space Grotesk desde Google Fonts -->
+    <!-- Tipografía del sitio, servida por Google Fonts. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
@@ -15,74 +15,60 @@
 </head>
 <body>
 
-    <!-- Menú de Navegación Sticky -->
     <header class="navbar">
         <div class="nav-container">
-            <!-- Logo de la agencia -->
             <a href="#" class="logo">pragz.io ✳︎</a>
             
-            <!-- Botón Hamburguesa para Móvil -->
-            <button class="hamburger" id="menu-btn" aria-label="Abrir menú">
+            <button class="hamburger" id="menu-btn" aria-label="Abrir menú" aria-controls="nav-links" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
 
-            <!-- Enlaces del menú (Ocultos en móvil por defecto) -->
-            <nav class="nav-links" id="nav-links">
+            <nav class="nav-links" id="nav-links" aria-label="Navegación principal">
                 <a href="#servicios">Servicios</a>
                 <a href="#portafolio">Portafolio</a>
-                <a href="#contacto" class="cta-link">Contactar</a>
+                <a href="#contacto">Contactar</a>
             </nav>
         </div>
     </header>
 
-    <!-- Sección Hero (Pantalla principal) -->
     <section class="hero">
-        
-        <!-- Contenedor del Gato Interactivo (Fondo) -->
-        <!-- El tiempo del video sigue la posición horizontal del mouse o dedo -->
+        <!-- Escritorio sigue el puntero; en móvil se repite solo el video. -->
         <div id="cat-avatar" class="cat-avatar" aria-hidden="true">
-            <video id="cat-video" class="cat-avatar__video" muted playsinline preload="auto" poster="./assets/hero2_refurbished.png">
+            <video id="cat-video" class="cat-avatar__video" muted playsinline preload="auto">
                 <source src="./assets/video/beast-video-hero1.mp4" type="video/mp4">
             </video>
+            <!-- Recortes de la imagen: pose central y respaldo si el video no carga. -->
             <span class="cat-avatar__frame"></span>
             <span class="cat-avatar__frame"></span>
             <span class="cat-avatar__frame"></span>
         </div>
 
-        <!-- Contenido de texto superpuesto (Z-index superior) -->
         <div class="hero-content">
-            <!-- Etiqueta difuminada (blur) estilo la referencia -->
             <p class="blurred-label">
                 Hola, somos pragz.io<br>
                 Tecnología que funciona para tu negocio.
             </p>
 
-            <!-- Contenedor para el efecto de máquina de escribir (Typewriter) -->
             <h1 id="typewriter-text" class="typewriter-container">
-                <!-- JS inyectará el texto aquí -->
                 <span id="cursor" class="cursor">|</span>
             </h1>
 
-            <!-- Botones tipo Pill (Píldora) - Entran con animación CSS -->
             <div class="pill-container">
-                <a href="https://wa.me/51999999999" target="_blank" class="pill-btn solid">Quiero mi web</a>
+                <a href="https://wa.me/51999999999" target="_blank" rel="noopener noreferrer" class="pill-btn solid">Quiero mi web</a>
                 <a href="#servicios" class="pill-btn outline">Ver servicios</a>
-                <button id="copy-email" class="pill-btn outline icon-btn">
+                <button id="copy-email" class="pill-btn outline">
                     hello@pragz.io 
-                    <!-- Icono SVG simple de copiar -->
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- Resto de secciones de la One-Page (Ejemplo básico para continuar el scroll) -->
     <section id="servicios" class="servicios">
         <div class="container">
             <h2>Nuestros Servicios</h2>
-            <!-- Aquí irían tus 3 cards -->
         </div>
     </section>
 
